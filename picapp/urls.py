@@ -4,5 +4,7 @@ app_name = 'picapp'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('pic', views.index2, name='index2'),
+
 
 ]
