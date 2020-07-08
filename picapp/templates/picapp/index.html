@@ -1,0 +1,50 @@
+<html>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <style>
+  .column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+    </style>
+  <body>
+
+      <div class="w3-container">
+        <div class="row">
+          <div class="column" style="background-color:rgb(255, 255, 255);">
+            <h3>Tweets about #IncendiosForestales OR #IFF OR #Bosques</h3>
+            {% for tweepy in search_tweets %}
+            <div class="w3-panel w3-card"><p>{{ tweepy.full_text }}</p></div>
+            {% endfor %}
+          </div>
+          <div class="column" style="background-color:rgb(255, 255, 255);">
+            <h3>Without RTs</3>
+           
+            {% for tweepy in search_tweets_noRT %}
+
+            <div class="w3-panel w3-card"><p>{{ tweepy.full_text }}</p></div>
+            {% endfor %}
+          </div>
+          <div class="column" style="background-color:rgb(255, 255, 255);">
+            <h3>FENIX Mentions</h3>
+            {% for tweepy in user_metions %}
+            <div class="w3-panel w3-card"><p>{{ tweepy.full_text }}</p></div>
+            {% endfor %}
+          </div>
+        </div>
+        
+
+      </div>
+      
+  </body>
+</html>
