@@ -18,27 +18,51 @@
 
     </style>
   <body>
+<br>
+<div class="w3-container">
 
-      <div class="w3-container">
+<a href="{% url "picapp:index2" %}" style="float: right;color: rgba(255, 146, 202, 0.845);">more tweets</a> 
+</div>
+        <div class="w3-container">
+        <br>
         <div class="row">
           <div class="column" style="background-color:rgb(255, 255, 255);">
-            <h3>Tweets about #IncendiosForestales OR #IFF OR #Bosques</h3>
+            <h4>Tweets about #IncendiosForestales OR #IFF OR #Bosques</h4>
             {% for tweepy in search_tweets %}
-            <div class="w3-panel w3-card"><p>{{ tweepy.full_text }}</p></div>
-            {% endfor %}
-          </div>
-          <div class="column" style="background-color:rgb(255, 255, 255);">
-            <h3>Without RTs</3>
-           
-            {% for tweepy in search_tweets_noRT %}
+            <div class="w3-panel w3-card">
+              <p>{{ tweepy.full_text }}</p>
+              <h6 style="color: rgb(103, 103, 103);font-size: small;">{{ tweepy.created_at }}</h6>
+              <h6 style="color: rgb(103, 103, 103);font-size: small;">{{ tweepy.place.full_name }}</h6>
 
-            <div class="w3-panel w3-card"><p>{{ tweepy.full_text }}</p></div>
+              <h6><a target="_blank" rel="noopener noreferrer" href="{{ tweepy.user.url }}"><strong>source</strong></a></h6>
+            </div>
             {% endfor %}
           </div>
           <div class="column" style="background-color:rgb(255, 255, 255);">
-            <h3>FENIX Mentions</h3>
+            <h4>Without RTs</h4>
+            {% for tweepy in search_tweets_noRT %}
+            <div class="w3-panel w3-card">
+              <p>{{ tweepy.full_text }}</p>
+
+              <p style="color: rgb(103, 103, 103);font-size: small;">retweet count:{{ tweepy.retweet_count }}<br>
+                likes:{{ tweepy.favorite_count }}<br>
+              {{ tweepy.created_at }}</p>
+              <h6 style="color: rgb(103, 103, 103);font-size: small;">{{ tweepy.place.full_name }}</h6>
+
+              <h6><a target="_blank" rel="noopener noreferrer" href="{{ tweepy.user.url }}"><strong>source</strong></a></h6>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="column" style="background-color:rgb(255, 255, 255);">
+            <h4>FENIX Mentions  </h4>
             {% for tweepy in user_metions %}
-            <div class="w3-panel w3-card"><p>{{ tweepy.full_text }}</p></div>
+            <div class="w3-panel w3-card">
+              <p>{{ tweepy.full_text }}</p>
+              <h6 style="color: rgb(103, 103, 103);font-size: small;">{{ tweepy.created_at }}</h6>
+              <h6 style="color: rgb(103, 103, 103);font-size: small;">{{ tweepy.place.full_name }}</h6>
+            <h6><a target="_blank" rel="noopener noreferrer" href="{{ tweepy.user.url }}"><strong>source</strong></a></h6>
+            
+            </div>
             {% endfor %}
           </div>
         </div>
@@ -46,5 +70,10 @@
 
       </div>
       
+
+
+  
+
   </body>
 </html>
+
